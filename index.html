@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chúc mừng 20/10 — Ngày Phụ nữ Việt Nam</title>
+  <style>
+    :root{
+      --bg:#fff6f9;
+      --card:#ffffff;
+      --accent:#ff6fa3;
+      --accent-2:#ffb4d2;
+      --text:#333;
+      --muted:#7a7a7a;
+    }
+    *{box-sizing:border-box}
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, #fff0f6 0%, transparent 10%),
+                  radial-gradient(900px 400px at 90% 90%, #fff7f0 0%, transparent 10%),
+                  var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .container{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+    }
+
+    .card{
+      width:100%;
+      max-width:980px;
+      background:var(--card);
+      border-radius:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      overflow:hidden;
+      display:flex;
+      gap:24px;
+      align-items:stretch;
+      padding:28px;
+    }
+
+    /* left: artwork */
+    .art{
+      flex:0 0 360px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+
+    .flower {
+        width: 320px;
+        height: 320px;
+        animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+        0%,100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+        }
+
+        /* Cánh bung ra */
+        .petal {
+        transform-origin: 0 0;
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+        animation: bloom 1s ease-out forwards;
+        }
+
+        .petal1 { animation-delay: 0.1s; }
+        .petal2 { animation-delay: 0.2s; }
+        .petal3 { animation-delay: 0.3s; }
+        .petal4 { animation-delay: 0.4s; }
+        .petal5 { animation-delay: 0.5s; }
+        .petal6 { animation-delay: 0.6s; }
+        .petal7 { animation-delay: 0.7s; }
+        .petal8 { animation-delay: 0.8s; }
+
+        @keyframes bloom {
+        to {
+            opacity: 1;
+            transform: scale(1) rotate(360deg);
+        }
+        }
+
+        /* Thân mọc lên */
+        .stem path {
+        stroke-dasharray: 70;
+        stroke-dashoffset: 70;
+        animation: growStem 1.5s ease-out forwards;
+        }
+
+        @keyframes growStem {
+        to { stroke-dashoffset: 0; }
+        }
+
+        /* Tâm hoa hiện ra */
+        .center {
+        opacity: 0;
+        transform: scale(0);
+        animation: appearCenter 0.8s ease-out 1.3s forwards;
+        }
+
+        @keyframes appearCenter {
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+        }
+
+
+    /* right: message */
+    .msg{
+      flex:1 1 auto;
+      padding:6px 6px 6px 0;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    h1{
+      margin:0 0 8px 0;
+      font-size:28px;
+      letter-spacing:0.4px;
+      color:var(--accent);
+      text-shadow:0 1px 0 rgba(255,255,255,0.6);
+    }
+    .subtitle{
+      margin:0 0 18px 0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .greeting{
+      font-size:16px;
+      line-height:1.6;
+      background: linear-gradient(90deg, rgba(255,111,163,0.06), rgba(255,180,210,0.02));
+      padding:16px;
+      border-radius:10px;
+      border:1px solid rgba(255,111,163,0.06);
+    }
+
+    .greeting p{ margin:0 0 12px 0; }
+    .greeting p:last-child{ margin-bottom:0 }
+
+    .cta{
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:10px;
+      border:0;
+      cursor:pointer;
+      font-weight:600;
+      text-decoration:none;
+    }
+
+    .btn-primary{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white;
+      box-shadow:0 6px 18px rgba(255,111,163,0.18);
+    }
+
+    .btn-ghost{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(255,111,163,0.12);
+    }
+
+    /* confetti */
+    .confetti {
+      pointer-events:none;
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+      z-index:5;
+    }
+    .piece {
+      position:absolute;
+      width:10px;
+      height:14px;
+      opacity:0.95;
+      transform-origin:center;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0%{ transform: translateY(-10vh) rotate(0deg); opacity:1 }
+      100%{ transform: translateY(120vh) rotate(540deg); opacity:0.9 }
+    }
+
+    /* responsive */
+    @media (max-width:900px){
+      .card{ flex-direction:column; gap:18px; padding:18px; }
+      .art{ flex:0 0 auto; order:2; }
+      .msg{ order:1 }
+      .flower{ width:260px; height:260px }
+      h1{ text-align:center }
+    }
+
+    /* small decorations */
+    .signature{
+      margin-top:14px;
+      font-size:13px;
+      color:var(--muted);
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .heart{
+      display:inline-block;
+      width:18px;
+      height:18px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      border-radius:50%;
+      transform:translateY(1px);
+      box-shadow:0 4px 10px rgba(255,111,163,0.18);
+    }
+
+    .btn-primary {
+        background: linear-gradient(90deg, #ff6fa3, #ffb4d2);
+        color: white;
+        font-weight: 600;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(255,111,163,0.3);
+        }
+    @keyframes flowerFall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card" role="article" aria-label="Thiệp chúc mừng 20/10">
+      <div class="art" aria-hidden="true">
+        <!-- SVG hoa đơn giản, không cần tài nguyên ngoài -->
+        <svg class="flower" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+                <linearGradient id="petalGrad" x1="0" x2="1">
+                <stop offset="0" stop-color="#ffb4d2" />
+                <stop offset="1" stop-color="#ff6fa3" />
+                </linearGradient>
+                <linearGradient id="stemGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#4caf50" />
+                <stop offset="1" stop-color="#2e7d32" />
+                </linearGradient>
+            </defs>
+
+            <!-- Thân cây -->
+            <g class="stem" transform="translate(110,150)">
+                <path d="M0,0 C0,20 0,40 0,70" stroke="url(#stemGrad)" stroke-width="4" fill="none" stroke-linecap="round" />
+                <path d="M0,40 C-12,20 -26,40 -10,50" fill="#6fbf73" />
+                <path d="M0,50 C12,30 26,50 10,60" fill="#6fbf73" />
+            </g>
+
+            <!-- Bó hoa -->
+            <g class="bouquet" transform="translate(110,110)">
+                <g class="petal petal1">
+                <path d="M0,-6 C28,-36 56,-36 60,-6 C56,24 28,36 0,6 Z" fill="url(#petalGrad)" transform="rotate(0) translate(0,-40)" />
+                </g>
+                <g class="petal petal2">
+                <path d="M0,-6 C28,-36 56,-36 60,-6 C56,24 28,36 0,6 Z" fill="url(#petalGrad)" transform="rotate(45) translate(0,-40)" />
+                </g>
+                <g class="petal petal3">
+                <path d="M0,-6 C28,-36 56,-36 60,-6 C56,24 28,36 0,6 Z" fill="url(#petalGrad)" transform="rotate(90) translate(0,-40)" />
+                </g>
+                <g class="petal petal4">
+                <path d="M0,-6 C28,-36 56,-36 60,-6 C56,24 28,36 0,6 Z" fill="url(#petalGrad)" transform="rotate(135) translate(0,-40)" />
+                </g>
+                <g class="petal petal5">
+                <path d="M0,-6 C28,-36 56,-36 60,-6 C56,24 28,36 0,6 Z" fill="url(#petalGrad)" transform="rotate(180) translate(0,-40)" />
+                </g>
+                <g class="petal petal6">
+                <path d="M0,-6 C28,-36 56,-36 60,-6 C56,24 28,36 0,6 Z" fill="url(#petalGrad)" transform="rotate(225) translate(0,-40)" />
+                </g>
+                <g class="petal petal7">
+                <path d="M0,-6 C28,-36 56,-36 60,-6 C56,24 28,36 0,6 Z" fill="url(#petalGrad)" transform="rotate(270) translate(0,-40)" />
+                </g>
+                <g class="petal petal8">
+                <path d="M0,-6 C28,-36 56,-36 60,-6 C56,24 28,36 0,6 Z" fill="url(#petalGrad)" transform="rotate(315) translate(0,-40)" />
+                </g>
+
+                <!-- Tâm hoa -->
+                <circle class="center" r="12" fill="#ffd6e6" />
+            </g>
+            </svg>
+
+
+
+        <!-- Confetti pieces (will be positioned by JS) -->
+        <div class="confetti" id="confetti"></div>
+      </div>
+
+      <div class="msg">
+        <h1>Chúc mừng 20/10 - Ngày Phụ nữ Việt Nam</h1>
+        <!-- <div class="subtitle">Gửi tới những người phụ nữ tuyệt vời — mẹ, vợ, chị, em, bạn bè và đồng nghiệp.</div> -->
+
+        <div class="greeting">
+            <p>Mẹ ơi, nhân ngày Phụ nữ Việt Nam 20/10, con chúc mẹ thật nhiều sức khỏe, luôn vui vẻ và hạnh phúc.</p>
+        </div>
+
+
+        <div class="cta" role="group" aria-label="Tùy chọn">
+          <!-- <a class="btn btn-primary" href="#" onclick="downloadCard(); return false;" title="Tải thiệp">Tải thiệp (PNG)</a>
+          <button class="btn btn-ghost" onclick="printCard()">In thiệp</button> -->
+          <button class="btn btn-primary" onclick="sendLove()">Gửi đến Mẹ 💌</button>
+        </div>
+
+        <!-- <div class="signature" aria-hidden="false">
+          <span class="heart" aria-hidden="true"></span>
+          <span>Thân gửi từ <strong>bạn của bạn</strong> — Chúc 20/10 vui vẻ!</span>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple confetti generator (no external libs)
+    (function createConfetti(){
+      const container = document.getElementById('confetti');
+      const colors = ['#ff6fa3','#ffd6e6','#ffb4d2','#ffd59a','#cdeee6'];
+      const pieces = 28;
+      for(let i=0;i<pieces;i++){
+        const el = document.createElement('div');
+        el.className='piece';
+        el.style.background = colors[i % colors.length];
+        el.style.left = Math.random()*100 + '%';
+        el.style.top = Math.random()*-20 + 'vh';
+        el.style.width = (6 + Math.random()*12) + 'px';
+        el.style.height = (8 + Math.random()*16) + 'px';
+        el.style.borderRadius = (Math.random()>0.6? '2px' : '50%');
+        const delay = Math.random()*-10;
+        const dur = 5 + Math.random()*6;
+        el.style.animationDuration = dur + 's';
+        el.style.animationDelay = delay + 's';
+        container.appendChild(el);
+      }
+    })();
+
+    // Print helper
+    function printCard(){
+      window.print();
+    }
+
+    // Download as PNG — simple approach: render card to canvas using SVG via foreignObject
+    // Works best in modern browsers. Fallback: user can print/save as PDF.
+    async function downloadCard(){
+      const card = document.querySelector('.card');
+      const rect = card.getBoundingClientRect();
+      const xml = `
+        <svg xmlns='http://www.w3.org/2000/svg' width='${rect.width}' height='${rect.height}'>
+          <foreignObject width='100%' height='100%'>
+            ${new XMLSerializer().serializeToString(card)}
+          </foreignObject>
+        </svg>
+      `.trim();
+
+      const blob = new Blob([xml], {type:'image/svg+xml;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.onload = function(){
+        const canvas = document.createElement('canvas');
+        canvas.width = rect.width * devicePixelRatio;
+        canvas.height = rect.height * devicePixelRatio;
+        const ctx = canvas.getContext('2d');
+        ctx.scale(devicePixelRatio, devicePixelRatio);
+        ctx.fillStyle = window.getComputedStyle(document.body).background || '#fff';
+        ctx.fillRect(0,0,rect.width,rect.height);
+        ctx.drawImage(img,0,0);
+        canvas.toBlob(function(blob){
+          const a = document.createElement('a');
+          a.download = 'Thiep-20-10.png';
+          a.href = URL.createObjectURL(blob);
+          a.click();
+          URL.revokeObjectURL(url);
+        }, 'image/png');
+      };
+      img.onerror = function(){
+        alert('Trình duyệt không hỗ trợ tính năng tải thiệp tự động. Bạn có thể in trang (Ctrl+P) để lưu.');
+        URL.revokeObjectURL(url);
+      }
+      img.src = url;
+    }
+    function sendLove() {
+        // Phát âm thanh piano
+        const piano = document.getElementById('pianoSound');
+        piano.currentTime = 0;
+        piano.play();
+
+        // Hiệu ứng chữ bay "Con yêu Mẹ 💖"
+        const msg = document.createElement('div');
+        msg.textContent = '💖';
+        msg.style.position = 'fixed';
+        msg.style.left = Math.random() * 60 + 20 + '%';
+        msg.style.bottom = '-50px';
+        msg.style.fontSize = '26px';
+        msg.style.fontWeight = 'bold';
+        msg.style.color = '#ff6fa3';
+        msg.style.opacity = '1';
+        msg.style.transition = 'all 3s ease-out';
+        msg.style.zIndex = '9999';
+        document.body.appendChild(msg);
+
+        setTimeout(() => {
+            msg.style.transform = 'translateY(-400px)';
+            msg.style.opacity = '0';
+        }, 50);
+        setTimeout(() => msg.remove(), 3000);
+
+        // Hiệu ứng hoa rơi 🌸
+        for (let i = 0; i < 8; i++) {
+            createFallingFlower();
+        }
+        }
+
+        function createFallingFlower() {
+        const flower = document.createElement('div');
+        flower.textContent = '🌸';
+        flower.style.position = 'fixed';
+        flower.style.left = Math.random() * 100 + 'vw';
+        flower.style.top = '-50px';
+        flower.style.fontSize = Math.random() * 20 + 20 + 'px';
+        flower.style.opacity = '0.9';
+        flower.style.zIndex = '9998';
+        flower.style.transition = `transform 5s linear, opacity 5s`;
+        document.body.appendChild(flower);
+
+        setTimeout(() => {
+            flower.style.transform = `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`;
+            flower.style.opacity = '0';
+        }, 100);
+
+        setTimeout(() => flower.remove(), 5000);
+        }
+
+
+  </script>
+
+  <audio id="pianoSound" preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7a8a5b9a9d.mp3?filename=piano-soft-melody-110624.mp3" type="audio/mpeg">
+ </audio>
+</body>
+</html>
